@@ -1,7 +1,7 @@
 from typing import List
 from fastapi import FastAPI, Request,File,UploadFile,Form
 from transformers import AutoTokenizer, AutoModelForCausalLM,AutoModel
-from glm4LLM import ChatGLM4_LLM
+from glm4LLM_VLLM import ChatGLM4_LLM
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.prompts.chat import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -14,6 +14,7 @@ from langchain.chains import RetrievalQA
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 from langchain_community.document_loaders import TextLoader,Docx2txtLoader,PyMuPDFLoader
+from langchain_community.llms import VLLM
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import re
 import uvicorn
@@ -251,7 +252,8 @@ if __name__ == '__main__':
     # )
     gen_kwargs = {"max_length": 2500, "do_sample": True, "top_k": 1}
     # 加载本地LLM模型
-    llm = ChatGLM4_LLM(model_name_or_path="/root/autodl-tmp/models/glm-4-9b-chat-hf", gen_kwargs=gen_kwargs)
+    # llm = ChatGLM4_LLM(model_name_or_path="/root/autodl-tmp/models/glm-4-9b-chat-hf", gen_kwargs=gen_kwargs)
+    llm = ChatGLM4_LLM(api_base_url="http://localhost:8002/v1")
     # 加载本地向量数据库与embeddings模型
     embedding = BGEMilvusEmbeddings()
     persist_directory='/root/autodl-tmp/vectorDatabase/publicChroma'
