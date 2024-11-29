@@ -14,7 +14,7 @@ vectordb_load = Chroma(
     embedding_function=embedding
 )
 # 相似度检索，k代表返回多少条结果
-sim_docs_similarity_search=vectordb_load.similarity_search("请于此处输入与数据集相关的语句",k=5)
+sim_docs_similarity_search=vectordb_load.similarity_search("如何设计prompt",k=5)
 # MMR检索
 # sim_docs_MMR_search=vectordb_load.max_marginal_relevance_search("请于此处输入与数据集相关的语句",k=3)
 
