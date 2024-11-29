@@ -12,12 +12,6 @@ from transformers import AutoTokenizer, AutoModel
 import torch
 from textEmbeddings import BGEMilvusEmbeddings
 
-# model_name = "bge-m3" 
-# save_directory = "/root/autodl-tmp/models/bge-m3"
-# tokenizer = AutoTokenizer.from_pretrained(model_name, )
-# model = AutoModel.from_pretrained(model_name)
-# embedding = BGEM3Embeddings()
-
 embedding_model = BGEMilvusEmbeddings()
 
 # 生成文本嵌入
